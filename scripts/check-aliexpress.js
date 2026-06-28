@@ -6,7 +6,7 @@ const shoppingPath = path.join(__dirname, '..', 'shopping.json');
 const outputPath = path.join(__dirname, '..', 'data', 'aliexpress-latest.json');
 
 function cleanText(value) {
-  return value ? String(value).trim() : null;
+  return value ? String(value).replace(/\s+/g, ' ').trim() : null;
 }
 
 function normalizeAliExpressUrl(url) {
@@ -16,8 +16,31 @@ function normalizeAliExpressUrl(url) {
 }
 
 function extractPrice(bodyText) {
-  const match = bodyText.match(/₪\s?\d+(\.\d+)?/);
-  return match ? match[0].replace(/\s+/g, '') : null;
+  const patterns = [
+    /₪\s?\d+(\.\d+)?/,
+    /US\s?\$\s?\d+(\.\d+)?/i,
+    /\$\s?\d+(\.\d+)?/,
+    /€\s?\d+(\.\d+)?/,
+    /USD\s?\d+(\.\d+)?/i,
+    /ILS\s?\d+(\.\d+)?/i
+  ];
+
+  for (const pattern of patterns) {
+    const match = bodyText.match(pattern);
+    if (match) return match[0].replace(/\s+/g, '');
+  }
+
+  return null;
+}
+
+function getDebugSample(bodyText) {
+  const lines = bodyText
+    .split('\n')
+    .map(line => cleanText(line))
+    .filter(Boolean)
+    .slice(0, 80);
+
+  return lines.join(' | ').slice(0, 2500);
 }
 
 async function extractAliExpress(page, item) {
@@ -28,10 +51,11 @@ async function extractAliExpress(page, item) {
     timeout: 60000
   });
 
-  await page.waitForTimeout(9000);
+  await page.waitForTimeout(12000);
 
   const title = await page.title();
   const bodyText = await page.locator('body').innerText();
+  const price = extractPrice(bodyText);
 
   const ratingMatch = bodyText.match(/\b\d\.\d\b/);
   const reviewsMatch = bodyText.match(/(\d+)\s+(חוות דעת|דירוגים|reviews|ratings)/i);
@@ -43,12 +67,13 @@ async function extractAliExpress(page, item) {
     source: 'AliExpress',
     url,
     title: cleanText(title),
-    price: extractPrice(bodyText),
+    price,
     rating: ratingMatch ? ratingMatch[0] : null,
     reviews: reviewsMatch ? reviewsMatch[1] : null,
     sold: soldMatch ? soldMatch[1] : null,
     store: storeMatch ? cleanText(storeMatch[1]) : null,
-    checkedAt: new Date().toISOString()
+    checkedAt: new Date().toISOString(),
+    debugSample: price ? null : getDebugSample(bodyText)
   };
 }
 
