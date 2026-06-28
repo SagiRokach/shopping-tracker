@@ -1,0 +1,265 @@
+{
+  "version": 1,
+  "purpose": "Personal shopping intelligence list. The list is a starting point for research, not only a price tracker.",
+  "defaults": {
+    "currency": "ILS",
+    "priority": 3,
+    "allow_alternatives": true,
+    "report_top_n": 3
+  },
+  "items": [
+    {
+      "id": "steam-wallpaper-engine",
+      "product": "Wallpaper Engine",
+      "website": "Steam",
+      "category": "Game",
+      "link": "https://store.steampowered.com/app/431960/Wallpaper_Engine/",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": false,
+      "notes": "Exact Steam app. Alternatives are generally not relevant."
+    },
+    {
+      "id": "steam-beltmatic",
+      "product": "Beltmatic",
+      "website": "Steam",
+      "category": "Game",
+      "link": "https://store.steampowered.com/app/2674590/Beltmatic/",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": false,
+      "notes": "Exact Steam app. Alternatives are generally not relevant."
+    },
+    {
+      "id": "steam-two-point-museum",
+      "product": "Two Point Museum",
+      "website": "Steam",
+      "category": "Game",
+      "link": "https://store.steampowered.com/app/2185060/Two_Point_Museum/",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": false,
+      "notes": "Exact Steam app. Alternatives are generally not relevant."
+    },
+    {
+      "id": "steam-two-point-campus",
+      "product": "Two Point Campus",
+      "website": "Steam",
+      "category": "Game",
+      "link": "https://store.steampowered.com/app/1649080/Two_Point_Campus/",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": false,
+      "notes": "Exact Steam app. Alternatives are generally not relevant."
+    },
+    {
+      "id": "steam-two-point-hospital",
+      "product": "Two Point Hospital",
+      "website": "Steam",
+      "category": "Game",
+      "link": "https://store.steampowered.com/app/535930/Two_Point_Hospital/",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": false,
+      "notes": "Exact Steam app. Alternatives are generally not relevant."
+    },
+    {
+      "id": "steam-project-hospital",
+      "product": "Project Hospital",
+      "website": "Steam",
+      "category": "Game",
+      "link": "https://store.steampowered.com/app/868360/Project_Hospital/",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": false,
+      "notes": "Exact Steam app. Alternatives are generally not relevant."
+    },
+    {
+      "id": "steam-plague-inc-evolved",
+      "product": "Plague Inc: Evolved",
+      "website": "Steam",
+      "category": "Game",
+      "link": "https://store.steampowered.com/app/246620/Plague_Inc_Evolved/",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": false,
+      "notes": "Exact Steam app. Alternatives are generally not relevant."
+    },
+    {
+      "id": "steam-lords-of-the-realm-ii",
+      "product": "Lords of the Realm II",
+      "website": "Steam",
+      "category": "Game",
+      "link": "https://store.steampowered.com/app/397350/Lords_of_the_Realm_II/",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": false,
+      "notes": "Exact Steam app. Alternatives are generally not relevant."
+    },
+    {
+      "id": "steam-caesar-3",
+      "product": "Caesar 3",
+      "website": "Steam",
+      "category": "Game",
+      "link": "https://store.steampowered.com/app/517790/Caesar_3/",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": false,
+      "notes": "Exact Steam app. Alternatives are generally not relevant."
+    },
+    {
+      "id": "steam-terra-nil",
+      "product": "Terra Nil",
+      "website": "Steam",
+      "category": "Game",
+      "link": "https://store.steampowered.com/app/1593030/Terra_Nil/",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": false,
+      "notes": "Exact Steam app. Alternatives are generally not relevant."
+    },
+    {
+      "id": "steam-kingdoms-and-castles",
+      "product": "Kingdoms and Castles",
+      "website": "Steam",
+      "category": "Game",
+      "link": "https://store.steampowered.com/app/569480/Kingdoms_and_Castles/",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": false,
+      "notes": "Exact Steam app. Alternatives are generally not relevant."
+    },
+    {
+      "id": "steam-civilization-beyond-earth",
+      "product": "Sid Meier's Civilization: Beyond Earth",
+      "website": "Steam",
+      "category": "Game",
+      "link": "https://store.steampowered.com/app/65980/Sid_Meiers_Civilization_Beyond_Earth/",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": false,
+      "notes": "Exact Steam app. Alternatives are generally not relevant."
+    },
+    {
+      "id": "steam-planet-coaster-2",
+      "product": "Planet Coaster 2",
+      "website": "Steam",
+      "category": "Game",
+      "link": "https://store.steampowered.com/app/2688950/Planet_Coaster_2/",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": false,
+      "notes": "Exact Steam app. Alternatives are generally not relevant."
+    },
+    {
+      "id": "steam-tower-dominion",
+      "product": "Tower Dominion",
+      "website": "Steam",
+      "category": "Game",
+      "link": "https://store.steampowered.com/app/3226530/Tower_Dominion/",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": false,
+      "notes": "Exact Steam app. Alternatives are generally not relevant."
+    },
+    {
+      "id": "steam-infection-free-zone",
+      "product": "Infection Free Zone",
+      "website": "Steam",
+      "category": "Game",
+      "link": "https://store.steampowered.com/app/1465460/Infection_Free_Zone/",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": false,
+      "notes": "Exact Steam app. Alternatives are generally not relevant."
+    },
+    {
+      "id": "steam-train-station-project",
+      "product": "Train Station Project",
+      "website": "Steam",
+      "category": "Game",
+      "link": "https://store.steampowered.com/app/2681560/Train_Station_Project/",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": false,
+      "notes": "Exact Steam app. Alternatives are generally not relevant."
+    },
+    {
+      "id": "steam-motorsport-manager",
+      "product": "Motorsport Manager",
+      "website": "Steam",
+      "category": "Game",
+      "link": "https://store.steampowered.com/app/415200/Motorsport_Manager/",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": false,
+      "notes": "Exact Steam app. Alternatives are generally not relevant."
+    },
+    {
+      "id": "steam-flotsam",
+      "product": "Flotsam",
+      "website": "Steam",
+      "category": "Game",
+      "link": "https://store.steampowered.com/app/821250/Flotsam/",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": false,
+      "notes": "Exact Steam app. Alternatives are generally not relevant."
+    },
+    {
+      "id": "steam-dawn-of-defense",
+      "product": "Dawn Of Defense",
+      "website": "Steam",
+      "category": "Game",
+      "link": "https://store.steampowered.com/app/2781660/Dawn_Of_Defense/",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": false,
+      "notes": "Exact Steam app. Alternatives are generally not relevant."
+    },
+    {
+      "id": "steam-canvas-of-kings",
+      "product": "Canvas of Kings",
+      "website": "Steam",
+      "category": "Game",
+      "link": "https://store.steampowered.com/app/2498570/Canvas_of_Kings/",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": false,
+      "notes": "Exact Steam app. Alternatives are generally not relevant."
+    },
+    {
+      "id": "steam-wyldheart",
+      "product": "Wyldheart",
+      "website": "Steam",
+      "category": "Game",
+      "link": "https://store.steampowered.com/app/3642910/Wyldheart/",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": false,
+      "notes": "Exact Steam app. Alternatives are generally not relevant."
+    },
+    {
+      "id": "steam-tavern-keeper",
+      "product": "Tavern Keeper",
+      "website": "Steam",
+      "category": "Game",
+      "link": "https://store.steampowered.com/app/436780/Tavern_Keeper/",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": false,
+      "notes": "Exact Steam app. Alternatives are generally not relevant."
+    },
+    {
+      "id": "steam-the-lift",
+      "product": "THE LIFT: Supernatural Handyman Simulator",
+      "website": "Steam",
+      "category": "Game",
+      "link": "https://store.steampowered.com/app/3283240/THE_LIFT_Supernatural_Handyman_Simulator/",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": false,
+      "notes": "Exact Steam app. Alternatives are generally not relevant."
+    }
+  ]
+}
