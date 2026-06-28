@@ -260,6 +260,54 @@
       "priority": 3,
       "allow_alternatives": false,
       "notes": "Exact Steam app. Alternatives are generally not relevant."
+    },
+    {
+      "id": "aliexpress-1005004979776584",
+      "product": "AliExpress item 1005004979776584",
+      "website": "AliExpress",
+      "category": "Unknown",
+      "link": "https://he.aliexpress.com/item/1005004979776584.html?pdp_ext_f=%7B%22sku_id%22%3A%2212000031224212881%22%7D&sourceType=1&spm=a2g0o.wish-manage-home.0.0&gatewayAdapt=glo2isr",
+      "sku_id": "12000031224212881",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": true,
+      "notes": "Product page could not be read automatically yet; identify title/category later. Alternatives allowed."
+    },
+    {
+      "id": "aliexpress-1005006255849256",
+      "product": "AliExpress item 1005006255849256",
+      "website": "AliExpress",
+      "category": "Unknown",
+      "link": "https://he.aliexpress.com/item/1005006255849256.html?pdp_ext_f=%7B%22sku_id%22%3A%2212000036488648046%22%7D&sourceType=1&spm=a2g0o.wish-manage-home.0.0&gatewayAdapt=glo2isr",
+      "sku_id": "12000036488648046",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": true,
+      "notes": "Product page could not be read automatically yet; identify title/category later. Alternatives allowed."
+    },
+    {
+      "id": "aliexpress-1005007565625529",
+      "product": "AliExpress item 1005007565625529",
+      "website": "AliExpress",
+      "category": "Unknown",
+      "link": "https://he.aliexpress.com/item/1005007565625529.html?pdp_ext_f=%7B%22sku_id%22%3A%2212000041321995439%22%7D&sourceType=1&spm=a2g0o.wish-manage-home.0.0&gatewayAdapt=glo2isr",
+      "sku_id": "12000041321995439",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": true,
+      "notes": "Product page could not be read automatically yet; identify title/category later. Alternatives allowed."
+    },
+    {
+      "id": "aliexpress-1005007948878703",
+      "product": "AliExpress item 1005007948878703",
+      "website": "AliExpress",
+      "category": "Unknown",
+      "link": "https://he.aliexpress.com/item/1005007948878703.html?pdp_ext_f=%7B%22sku_id%22%3A%2212000042990020986%22%7D&sourceType=1&spm=a2g0o.wish-manage-home.0.0&gatewayAdapt=glo2isr",
+      "sku_id": "12000042990020986",
+      "currency": "ILS",
+      "priority": 3,
+      "allow_alternatives": true,
+      "notes": "Product page could not be read automatically yet; identify title/category later. Alternatives allowed."
     }
   ]
 }
