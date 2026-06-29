@@ -3,6 +3,7 @@ const path = require('path');
 const { chromium } = require('playwright');
 
 const shoppingPath = path.join(__dirname, '..', 'shopping.json');
+const itemsDir = path.join(__dirname, '..', 'items');
 const outputPath = path.join(__dirname, '..', 'data', 'aliexpress-latest.json');
 
 function cleanText(value) {
@@ -13,6 +14,30 @@ function normalizeAliExpressUrl(url) {
   const match = String(url).match(/item\/(\d+)\.html/);
   if (!match) return url;
   return `https://www.aliexpress.com/item/${match[1]}.html`;
+}
+
+function loadShoppingItems() {
+  const shopping = JSON.parse(fs.readFileSync(shoppingPath, 'utf8'));
+  const items = [...shopping.items];
+
+  if (fs.existsSync(itemsDir)) {
+    const itemFiles = fs
+      .readdirSync(itemsDir)
+      .filter(file => file.endsWith('.json'));
+
+    for (const file of itemFiles) {
+      const itemPath = path.join(itemsDir, file);
+      const item = JSON.parse(fs.readFileSync(itemPath, 'utf8'));
+      items.push(item);
+    }
+  }
+
+  const byId = new Map();
+  for (const item of items) {
+    if (item && item.id) byId.set(item.id, item);
+  }
+
+  return [...byId.values()];
 }
 
 function extractPrice(bodyText) {
@@ -72,14 +97,16 @@ async function extractAliExpress(page, item) {
     reviews: reviewsMatch ? reviewsMatch[1] : null,
     sold: soldMatch ? soldMatch[1] : null,
     store: storeMatch ? cleanText(storeMatch[1]) : null,
+    priority: item.priority,
+    allow_alternatives: item.allow_alternatives,
+    notes: item.notes || null,
     checkedAt: new Date().toISOString(),
     debugSample: price ? null : getDebugSample(bodyText)
   };
 }
 
 async function main() {
-  const shopping = JSON.parse(fs.readFileSync(shoppingPath, 'utf8'));
-  const items = shopping.items.filter(item => item.website === 'AliExpress');
+  const items = loadShoppingItems().filter(item => item.website === 'AliExpress');
 
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
 
@@ -106,6 +133,9 @@ async function main() {
         id: item.id,
         source: 'AliExpress',
         url: item.link || item.url,
+        priority: item.priority,
+        allow_alternatives: item.allow_alternatives,
+        notes: item.notes || null,
         error: error.message,
         checkedAt: new Date().toISOString()
       });
