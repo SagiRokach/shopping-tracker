@@ -12,6 +12,27 @@ The main question is:
 
 The system should not encourage daily price chasing. It should support real buying decisions.
 
+## Required input files
+
+Every report must read the current repository state and use these files when present:
+
+- `shopping.json` - main tracked shopping list.
+- `items/*.json` - additional tracked items.
+- `data/aliexpress-latest.json` - latest locally collected AliExpress data.
+- `purchases.json` - purchased / no-longer-candidate items.
+
+The report must treat `purchases.json` as an exclusion list for buying recommendations.
+
+If an item is listed in `purchases.json` with `status: "purchased"`, it must not appear as:
+
+- best pick
+- top 3 recommendation
+- buy-now recommendation
+- Steam sale opportunity
+- weekend action item
+
+Purchased items may only appear in a short "Already purchased / excluded" note if useful.
+
 ## Buying cadence
 
 Default cadence is a weekend decision report.
@@ -50,6 +71,7 @@ Each weekly report should include:
 4. Alerts: target-like price, unusually good discount, new low since tracking started, sale ending soon, or better alternative found.
 5. If nothing is on sale, still identify the best current opportunity instead of saying nothing is worth buying.
 6. A clear decision label for each recommendation.
+7. Already purchased / excluded items if they affected the ranking.
 
 ## Decision labels
 
@@ -62,6 +84,7 @@ Use practical recommendation labels:
 - Wait, not enough value right now
 - Skip this week
 - Better alternative found
+- Already purchased - exclude
 
 ## Shopping Score
 
