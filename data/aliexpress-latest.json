@@ -7,12 +7,12 @@
     "price": "₪2.20",
     "rating": "4.9",
     "reviews": "152",
-    "sold": "240",
+    "sold": "176",
     "store": "Irrigation Garden Store",
     "priority": 3,
     "allow_alternatives": true,
     "notes": "Product page could not be read automatically yet; identify title/category later. Alternatives allowed.",
-    "checkedAt": "2026-07-04T11:51:30.197Z",
+    "checkedAt": "2026-07-04T12:39:54.512Z",
     "debugSample": null
   },
   {
@@ -28,7 +28,7 @@
     "priority": 3,
     "allow_alternatives": true,
     "notes": "Product page could not be read automatically yet; identify title/category later. Alternatives allowed.",
-    "checkedAt": "2026-07-04T11:51:43.236Z",
+    "checkedAt": "2026-07-04T12:40:07.407Z",
     "debugSample": null
   },
   {
@@ -39,12 +39,12 @@
     "price": "₪3.03",
     "rating": "4.8",
     "reviews": "3312",
-    "sold": "374",
+    "sold": "247",
     "store": "Chanyeen Store",
     "priority": 3,
     "allow_alternatives": true,
     "notes": "Product page could not be read automatically yet; identify title/category later. Alternatives allowed.",
-    "checkedAt": "2026-07-04T11:51:56.081Z",
+    "checkedAt": "2026-07-04T12:40:20.259Z",
     "debugSample": null
   },
   {
@@ -52,15 +52,15 @@
     "source": "AliExpress",
     "url": "https://www.aliexpress.com/item/1005007948878703.html",
     "title": "מכונת חימום HP6 - 7''x5'' ניידת לחימום חולצות - חימום מהיר לחולצות, העברת חום ופרויקטים בעיצוב אישי (ורוד)",
-    "price": "₪237.67",
+    "price": "₪236.60",
     "rating": "4.8",
     "reviews": "67",
-    "sold": "246",
+    "sold": "111",
     "store": "EASYCOUNT Store",
     "priority": 3,
     "allow_alternatives": true,
     "notes": "Product page could not be read automatically yet; identify title/category later. Alternatives allowed.",
-    "checkedAt": "2026-07-04T11:52:08.735Z",
+    "checkedAt": "2026-07-04T12:40:33.173Z",
     "debugSample": null
   },
   {
@@ -68,15 +68,15 @@
     "source": "AliExpress",
     "url": "https://www.aliexpress.com/item/1005006280641589.html",
     "title": "לוח סולרי 20W ל-Eufycam 3/3c/2/2c/2pro",
-    "price": "₪45.80",
+    "price": "₪44.73",
     "rating": "4.5",
     "reviews": "69",
-    "sold": "47",
+    "sold": "35",
     "store": "3C-top-world Store",
     "priority": 2,
     "allow_alternatives": true,
     "notes": "Sagi requested precise alternatives only. Search for exact or very close equivalents, not broad similar products. Product title/category should be identified by the local AliExpress checker.",
-    "checkedAt": "2026-07-04T11:52:21.756Z",
+    "checkedAt": "2026-07-04T12:40:46.008Z",
     "debugSample": null
   },
   {
@@ -92,7 +92,7 @@
     "priority": 3,
     "allow_alternatives": true,
     "notes": "AliExpress page could not be accessed directly by ChatGPT browsing. Product name was provided by Sagi. Weekly reports should research equivalent PC chassis dust filter mesh alternatives on other stores if useful.",
-    "checkedAt": "2026-07-04T11:52:34.390Z",
+    "checkedAt": "2026-07-04T12:40:58.708Z",
     "debugSample": null
   }
 ]
