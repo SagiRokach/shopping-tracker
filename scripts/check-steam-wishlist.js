@@ -1,8 +1,10 @@
 const fs = require('fs');
 const path = require('path');
+const { chromium } = require('playwright');
 
 const profileId = '76561198031651004';
-const wishlistUrl = `https://store.steampowered.com/wishlist/profiles/${profileId}/wishlistdata/`;
+const wishlistPageUrl = `https://store.steampowered.com/wishlist/profiles/${profileId}/`;
+const wishlistDataUrl = `https://store.steampowered.com/wishlist/profiles/${profileId}/wishlistdata/`;
 const outputPath = path.join(__dirname, '..', 'data', 'steam-wishlist-latest.json');
 
 function cleanText(value) {
@@ -26,19 +28,7 @@ function normalizePrice(app) {
   };
 }
 
-async function main() {
-  const response = await fetch(wishlistUrl, {
-    headers: {
-      'User-Agent': 'Mozilla/5.0',
-      'Accept': 'application/json,text/plain,*/*'
-    }
-  });
-
-  if (!response.ok) {
-    throw new Error(`Steam wishlist request failed: ${response.status} ${response.statusText}`);
-  }
-
-  const data = await response.json();
+function normalizeData(data) {
   const apps = Object.entries(data).map(([appId, app]) => ({
     id: `steam-${appId}`,
     appid: appId,
@@ -57,11 +47,76 @@ async function main() {
   }));
 
   apps.sort((a, b) => (a.product || '').localeCompare(b.product || ''));
+  return apps;
+}
+
+async function readWishlistWithBrowser() {
+  const browser = await chromium.launch({ headless: false });
+  const context = await browser.newContext({
+    locale: 'en-US',
+    extraHTTPHeaders: {
+      'Accept-Language': 'en-US,en;q=0.9'
+    }
+  });
+
+  const page = await context.newPage();
+
+  await page.goto(wishlistPageUrl, {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  });
+
+  await page.waitForTimeout(5000);
+
+  const title = await page.title();
+  const bodyText = await page.locator('body').innerText();
+
+  if (/sign in|login|התחבר|כניסה/i.test(bodyText)) {
+    console.log('Steam may be showing a login page. If a browser window is open, sign in and run again.');
+  }
+
+  const response = await page.evaluate(async (url) => {
+    const res = await fetch(url, {
+      credentials: 'include',
+      headers: {
+        'Accept': 'application/json,text/plain,*/*'
+      }
+    });
+
+    const text = await res.text();
+
+    return {
+      ok: res.ok,
+      status: res.status,
+      statusText: res.statusText,
+      contentType: res.headers.get('content-type'),
+      text
+    };
+  }, wishlistDataUrl);
+
+  await browser.close();
+
+  if (!response.ok) {
+    throw new Error(`Steam wishlist request failed: ${response.status} ${response.statusText}`);
+  }
+
+  try {
+    return JSON.parse(response.text);
+  } catch (error) {
+    const sample = response.text.slice(0, 500).replace(/\s+/g, ' ');
+    throw new Error(`Steam did not return JSON. Page title: ${title}. Content-Type: ${response.contentType}. Sample: ${sample}`);
+  }
+}
+
+async function main() {
+  const data = await readWishlistWithBrowser();
+  const apps = normalizeData(data);
 
   const result = {
     source: 'Steam Wishlist',
     profileId,
-    wishlistUrl,
+    wishlistPageUrl,
+    wishlistDataUrl,
     checkedAt: new Date().toISOString(),
     count: apps.length,
     items: apps
