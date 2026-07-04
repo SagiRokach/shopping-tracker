@@ -6,6 +6,7 @@ const profileId = '76561198031651004';
 const wishlistPageUrl = `https://store.steampowered.com/wishlist/profiles/${profileId}/`;
 const wishlistDataUrl = `https://store.steampowered.com/wishlist/profiles/${profileId}/wishlistdata/`;
 const outputPath = path.join(__dirname, '..', 'data', 'steam-wishlist-latest.json');
+const userDataDir = path.join(__dirname, '..', 'browser-data', 'steam');
 
 function cleanText(value) {
   return value ? String(value).replace(/\s+/g, ' ').trim() : null;
@@ -50,31 +51,7 @@ function normalizeData(data) {
   return apps;
 }
 
-async function readWishlistWithBrowser() {
-  const browser = await chromium.launch({ headless: false });
-  const context = await browser.newContext({
-    locale: 'en-US',
-    extraHTTPHeaders: {
-      'Accept-Language': 'en-US,en;q=0.9'
-    }
-  });
-
-  const page = await context.newPage();
-
-  await page.goto(wishlistPageUrl, {
-    waitUntil: 'domcontentloaded',
-    timeout: 60000
-  });
-
-  await page.waitForTimeout(5000);
-
-  const title = await page.title();
-  const bodyText = await page.locator('body').innerText();
-
-  if (/sign in|login|התחבר|כניסה/i.test(bodyText)) {
-    console.log('Steam may be showing a login page. If a browser window is open, sign in and run again.');
-  }
-
+async function fetchWishlistData(page) {
   const response = await page.evaluate(async (url) => {
     const res = await fetch(url, {
       credentials: 'include',
@@ -94,8 +71,6 @@ async function readWishlistWithBrowser() {
     };
   }, wishlistDataUrl);
 
-  await browser.close();
-
   if (!response.ok) {
     throw new Error(`Steam wishlist request failed: ${response.status} ${response.statusText}`);
   }
@@ -104,12 +79,62 @@ async function readWishlistWithBrowser() {
     return JSON.parse(response.text);
   } catch (error) {
     const sample = response.text.slice(0, 500).replace(/\s+/g, ' ');
-    throw new Error(`Steam did not return JSON. Page title: ${title}. Content-Type: ${response.contentType}. Sample: ${sample}`);
+    throw new Error(`Steam did not return JSON. Content-Type: ${response.contentType}. Sample: ${sample}`);
   }
 }
 
+async function readWishlistWithPersistentBrowser() {
+  fs.mkdirSync(userDataDir, { recursive: true });
+
+  const context = await chromium.launchPersistentContext(userDataDir, {
+    headless: false,
+    locale: 'en-US',
+    extraHTTPHeaders: {
+      'Accept-Language': 'en-US,en;q=0.9'
+    }
+  });
+
+  const page = context.pages()[0] || await context.newPage();
+
+  await page.goto(wishlistPageUrl, {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  });
+
+  await page.waitForTimeout(5000);
+
+  let bodyText = await page.locator('body').innerText();
+
+  if (/sign in|login|התחבר|כניסה/i.test(bodyText)) {
+    console.log('Steam login is required.');
+    console.log('Please sign in inside the opened Chromium window.');
+    console.log('The browser session will be saved under browser-data/steam.');
+    console.log('After you finish login and can see the wishlist, press ENTER here to continue.');
+
+    await new Promise(resolve => process.stdin.once('data', resolve));
+
+    await page.goto(wishlistPageUrl, {
+      waitUntil: 'domcontentloaded',
+      timeout: 60000
+    });
+
+    await page.waitForTimeout(5000);
+    bodyText = await page.locator('body').innerText();
+  }
+
+  if (/sign in|login|התחבר|כניסה/i.test(bodyText)) {
+    await context.close();
+    throw new Error('Steam still appears to require login. Login may not have completed successfully.');
+  }
+
+  const data = await fetchWishlistData(page);
+
+  await context.close();
+  return data;
+}
+
 async function main() {
-  const data = await readWishlistWithBrowser();
+  const data = await readWishlistWithPersistentBrowser();
   const apps = normalizeData(data);
 
   const result = {
