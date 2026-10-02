@@ -16,6 +16,14 @@
       "status": "purchased",
       "purchased_at": "2026-09-11",
       "notes": "Purchased by Sagi after the weekly Steam Shopping Intelligence recommendation. Exclude from future buy recommendations."
+    },
+    {
+      "id": "steam-two-point-campus",
+      "product": "Two Point Campus",
+      "website": "Steam",
+      "status": "purchased",
+      "purchased_at": "2026-10-02",
+      "notes": "Purchased by Sagi during the Steam Autumn Sale for NIS 11.90. Exclude from future buy recommendations."
     }
   ]
 }
